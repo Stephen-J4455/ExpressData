@@ -1,0 +1,2199 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* allow content to flow from top so page can scroll */
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-top: 24px; /* small top spacing so content isn't glued to top */
+}
+
+/* Only hide scrollbars on specific elements, not globally */
+.cards-scroll::-webkit-scrollbar,
+.transactions-list::-webkit-scrollbar,
+.offers-list::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 0px;
+}
+
+.container.full-width {
+  max-width: 1400px;
+}
+
+.container.wide {
+  max-width: 1400px;
+}
+
+.provider-detail {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 6px;
+}
+
+.provider-detail .provider-content {
+  width: 100%;
+}
+
+.card {
+  position: relative; /* allow card to occupy normal document flow so page scrolls */
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wavy-header {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 40px 20px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 10;
+}
+
+@media (min-width: 901px) {
+  .wavy-header {
+    max-width: 1400px;
+  }
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.app-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.wavy-svg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.wavy-svg-1 {
+  bottom: 0;
+}
+
+.wavy-svg-2 {
+  bottom: -10px;
+}
+
+.form-container {
+  padding: 0px 30px;
+  margin-top: 180px; /* Add margin to account for fixed wavy header */
+}
+
+/* Slightly reduce inner padding when container is wide to avoid large left gaps */
+.container.wide .form-container {
+  /* Do not add extra left padding when container is wide to avoid left gap
+     — keep inner padding symmetrical and small. */
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.form-container h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d3d3d3;
+  background-color: #d3d3d3;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.input-group {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+.input-group input[type="password"] {
+  padding-right: 44px; /* space for toggle */
+
+  align-items: center;
+  gap: 5px;
+  color: #555;
+}
+
+.options a {
+  color: #2575fc;
+  text-decoration: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  background-image: linear-gradient(white, white),
+    linear-gradient(45deg, #6a11cb, #2575fc);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn span {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn:hover {
+  background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.btn:hover span {
+  color: white;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social-login p {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+.social-icon:hover {
+  opacity: 0.8;
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.switch-form a {
+  color: #2575fc;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  min-width: 280px;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.toast .msg {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+  font-weight: 500;
+}
+
+/* Loading modal */
+.loading-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 9998;
+}
+
+.loading-content {
+  background: white;
+  padding: 18px 22px;
+  border-radius: 12px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 4px solid #eee;
+  border-top-color: #6a11cb;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-weight: 600;
+  color: #333;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ensure elements with the hidden attribute are actually hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* Profile card in main UI */
+.main-ui-inner {
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+@media (min-width: 901px) {
+  .main-ui-inner {
+    max-width: 1400px;
+    padding: 0 24px;
+  }
+}
+
+.card > .main-ui-inner {
+  display: flex;
+  flex-direction: column;
+}
+.profile-card {
+  position: sticky;
+  top: 12px;
+  z-index: 5;
+}
+.profile-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffffff, #fbfbff);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+.profile-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.profile-pic {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+}
+.profile-info .greeting {
+  font-size: 12px;
+  color: #666;
+}
+.profile-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+.profile-email {
+  font-size: 13px;
+  color: #666;
+}
+.profile-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Main topbar layout */
+.main-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.profile-info-top .greeting {
+  font-size: 12px;
+  color: #666;
+}
+.profile-info-top .profile-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Mini SIM Card on Top Bar */
+.sim-card-mini {
+  min-width: 200px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sim-card-mini::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.sim-card-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.35);
+}
+
+.sim-chip-mini {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 22px;
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chip-lines-mini {
+  width: 20px;
+  height: 16px;
+  background: repeating-linear-gradient(
+      90deg,
+      #c5a572 0px,
+      #c5a572 1.5px,
+      transparent 1.5px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      #c5a572 0px,
+      #c5a572 1.5px,
+      transparent 1.5px,
+      transparent 3px
+    );
+  border-radius: 2px;
+}
+
+.sim-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sim-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.sim-number {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  font-family: "Courier New", monospace;
+}
+
+.sim-balance-mini {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.balance-label {
+  font-size: 10px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sim-plan {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Legacy sim-card styles (keep for compatibility) */
+.sim-card {
+  min-width: 160px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #eef2ff, #f7f9ff);
+  border: 1px solid rgba(37, 117, 252, 0.06);
+}
+
+.btn.small {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+/* Default desktop styles for main page elements */
+.cards-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cards-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cards-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.card-item {
+  min-width: 280px;
+  max-width: 320px;
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.12);
+}
+
+.card-item h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+}
+
+.card-item .muted {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Transactions section */
+.transactions-section {
+  margin-top: 24px;
+}
+
+.transactions-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+}
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.transactions-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transactions-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.transaction-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
+  transition: all 0.2s ease;
+}
+
+.transaction-row:hover {
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+  transform: translateX(4px);
+}
+
+.transaction-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05) inset;
+}
+
+.status-success {
+  background: #16a34a;
+}
+
+.status-pending {
+  background: #f59e0b;
+}
+
+.status-failed {
+  background: #ef4444;
+}
+
+.transaction-provider {
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+}
+
+.transaction-meta {
+  color: #666;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111;
+  white-space: nowrap;
+}
+
+/* Responsive rules */
+
+/* Mobile devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+  body {
+    padding-top: 0;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card {
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .wavy-header {
+    padding: 20px 16px 30px;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .logo-container {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .app-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .wavy-svg {
+    height: 80px;
+  }
+
+  .form-container {
+    padding: 0px 20px;
+    margin-top: 140px;
+  }
+
+  .form-container h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .input-group input[type="password"] {
+    padding-right: 48px;
+  }
+
+  .password-toggle {
+    right: 14px;
+    padding: 8px;
+  }
+
+  .options {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .social-login {
+    margin-top: 24px;
+  }
+
+  .social-login p {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .social-buttons {
+    gap: 10px;
+  }
+
+  .social-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .switch-form {
+    font-size: 13px;
+    margin-top: 24px;
+  }
+}
+
+/* Small mobile devices (very small phones, less than 375px) */
+@media (max-width: 374px) {
+  .wavy-header {
+    padding: 16px 12px 24px;
+  }
+
+  .logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .app-name {
+    font-size: 16px;
+  }
+
+  .form-container {
+    padding: 24px 16px;
+    margin-top: 120px;
+  }
+
+  .form-container h2 {
+    font-size: 20px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .social-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile landscape and small tablets (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    max-width: 540px;
+    padding: 0 16px;
+  }
+
+  .wavy-header {
+    max-width: 540px;
+    padding: 32px 24px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .app-name {
+    font-size: 20px;
+  }
+
+  .form-container {
+    padding: 36px 28px;
+    margin-top: 160px;
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+  }
+}
+
+/* Tablets (768px to 900px) */
+@media (min-width: 768px) and (max-width: 900px) {
+  .container {
+    max-width: 680px;
+    padding: 0 24px;
+  }
+
+  .wavy-header {
+    max-width: 680px;
+    padding: 36px 32px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-name {
+    font-size: 22px;
+  }
+
+  .form-container {
+    padding: 40px 40px;
+    margin-top: 170px;
+  }
+
+  .form-container h2 {
+    font-size: 26px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+}
+
+/* Desktop and larger (901px and up) - Keep existing desktop styles */
+@media (min-width: 901px) {
+  .container {
+    max-width: 420px;
+  }
+
+  .wavy-header {
+    max-width: 420px;
+    padding: 40px 24px;
+  }
+
+  .form-container {
+    padding: 0px 32px;
+    position: relative;
+    top: 200px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* Main UI responsive rules */
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .wavy-header {
+    padding: 24px 12px;
+  }
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+  .app-name {
+    font-size: 18px;
+  }
+  /* Mobile: avatar left (stacked name under), sim on right, hide logout */
+  .main-topbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .topbar-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .profile-info-top .greeting {
+    font-size: 12px;
+  }
+  .profile-info-top .profile-name {
+    font-size: 14px;
+  }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sim-card-mini {
+    min-width: 160px;
+    padding: 10px 12px;
+  }
+
+  .sim-chip-mini {
+    width: 24px;
+    height: 18px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .chip-lines-mini {
+    width: 18px;
+    height: 14px;
+  }
+
+  .sim-number {
+    font-size: 13px;
+  }
+
+  .sim-plan {
+    font-size: 11px;
+  }
+
+  .sim-card {
+    min-width: 120px;
+  }
+  /* hide logout button on mobile */
+  #logout-btn {
+    display: none !important;
+  }
+  .profile-pic {
+    width: 48px;
+    height: 48px;
+  }
+  .content-area {
+    margin-top: 12px;
+  }
+  .cards-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cards-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .card-item {
+    min-width: 220px;
+    max-width: 260px;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+    flex: 0 0 auto;
+  }
+  .card-item h3 {
+    margin-bottom: 6px;
+  }
+  .card-item .muted {
+    color: #666;
+    font-size: 13px;
+  }
+
+  /* Transactions list styles (compact, no background, colored status dots) */
+  .transactions-section h3 {
+    margin: 6px 0 10px 0;
+  }
+  .transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 6px;
+    font-size: 13px; /* small text */
+    color: #333;
+  }
+
+  /* Each transaction is a slim row with transparent background */
+  .transaction-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 4px; /* compact padding */
+    border-radius: 6px;
+    background: transparent; /* no background */
+    box-shadow: none;
+  }
+
+  .transaction-left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* small colored status indicator */
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    margin-right: 8px;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03) inset;
+  }
+  .status-success {
+    background: #16a34a;
+  } /* green */
+  .status-pending {
+    background: #f59e0b;
+  } /* amber */
+  .status-failed {
+    background: #ef4444;
+  } /* red */
+
+  .transaction-provider {
+    font-weight: 600;
+    font-size: 13px;
+    color: #222;
+  }
+  .transaction-meta {
+    color: #666;
+    font-size: 12px;
+  }
+  .transaction-amount {
+    font-weight: 700;
+    font-size: 13px;
+    color: #111;
+    white-space: nowrap;
+  }
+
+  .transactions-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .transactions-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
+  }
+
+  @media (max-width: 480px) {
+    .card-item {
+      min-width: 180px;
+      max-width: 200px;
+    }
+  }
+
+  /* Mobile toast adjustments */
+  .toast {
+    right: 12px;
+    top: 12px;
+    left: 12px;
+    min-width: auto;
+    max-width: none;
+    font-size: 13px;
+  }
+
+  .toast .msg {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .boot-content img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 900px) {
+  .container {
+    max-width: 680px;
+  }
+  .profile-card {
+    padding: 12px;
+  }
+
+  .sim-card-mini {
+    min-width: 180px;
+  }
+
+  .sim-card {
+    min-width: 140px;
+  }
+  .cards-scroll {
+    gap: 14px;
+  }
+  .card-item {
+    min-width: 240px;
+    max-width: 280px;
+    padding: 16px;
+  }
+  .transactions-section h3 {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 901px) {
+  .container {
+    max-width: 1400px;
+  }
+  .main-ui-inner {
+    max-width: 1400px;
+  }
+  .profile-card {
+    padding: 14px 16px;
+  }
+  .main-topbar {
+    padding: 8px 0;
+  }
+
+  /* Grid layout for cards */
+  .cards-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    overflow-x: visible;
+    padding-bottom: 16px;
+  }
+
+  .card-item {
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+    padding: 24px;
+  }
+
+  .card-item h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .card-item .muted {
+    font-size: 15px;
+  }
+
+  /* Grid layout for content area */
+  .content-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .cards-scroll {
+    grid-column: 1 / -1;
+  }
+
+  .transactions-section {
+    margin-top: 0;
+    grid-column: 1 / -1;
+  }
+
+  .transactions-section h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  /* Grid for transactions list */
+  .transactions-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-height: unset;
+  }
+
+  .transaction-row {
+    padding: 16px 18px;
+  }
+
+  .transaction-provider {
+    font-size: 16px;
+  }
+
+  .transaction-meta {
+    font-size: 14px;
+  }
+
+  .transaction-amount {
+    font-size: 16px;
+  }
+
+  /* Provider detail page grid */
+  .provider-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .provider-offers {
+    grid-column: 1;
+  }
+
+  .provider-history {
+    grid-column: 1;
+  }
+
+  .offers-list {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    max-height: unset !important;
+    overflow-y: visible !important;
+    flex-direction: unset !important;
+  }
+
+  .offer-card {
+    transition: all 0.3s ease;
+  }
+
+  .offer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(37, 117, 252, 0.15) !important;
+  }
+
+  .offer-card {
+    padding: 16px 18px;
+  }
+
+  .offer-content {
+    gap: 6px 16px;
+  }
+
+  .offer-name {
+    font-size: 16px;
+  }
+
+  .offer-description {
+    font-size: 13px;
+  }
+
+  .offer-price {
+    font-size: 18px;
+  }
+
+  .offer-actions {
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  .offer-btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  /* Account page desktop grid */
+  .account-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .account-section:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .account-card {
+    padding: 24px;
+  }
+
+  .sim-card-display {
+    min-height: 240px;
+    padding: 28px;
+  }
+
+  .sim-card-chip {
+    width: 60px;
+    height: 48px;
+    top: 24px;
+    right: 24px;
+  }
+
+  .chip-lines {
+    width: 42px;
+    height: 34px;
+  }
+
+  .sim-card-number {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .sim-balance-amount {
+    font-size: 32px;
+  }
+
+  .sim-card-label {
+    font-size: 12px;
+  }
+
+  .account-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .account-name {
+    font-size: 20px;
+  }
+
+  .wallet-amount {
+    font-size: 36px;
+  }
+}
+
+/* Boot overlay to hide UI while auth initializes */
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  z-index: 10000;
+  transition: opacity 260ms ease, visibility 260ms ease;
+}
+.boot-overlay[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+}
+.boot-content img {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.2));
+}
+
+/* Provider Detail Page */
+.provider-detail {
+  animation: slideIn 0.3s ease;
+  /* make sure provider detail stacks above fixed overlays and covers the
+     full container area without being overlapped */
+  position: relative;
+  z-index: 11000; /* above toast (9999) and boot-overlay (10000) */
+  background: transparent; /* let inner content define its background */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.provider-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.provider-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #2575fc;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  font-size: 14px;
+  margin: 0;
+}
+
+.provider-back-btn:hover {
+  background: rgba(37, 117, 252, 0.1);
+}
+
+.provider-header-row h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.provider-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: transparent; /* remove debug color */
+}
+
+.provider-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.provider-actions h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.action-btn {
+  padding: 12px 16px;
+  border: 1px solid #d3d3d3;
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.action-btn:hover {
+  background: #f0f2f5;
+  border-color: #2575fc;
+  color: #2575fc;
+}
+
+.provider-offers {
+  margin-top: 12px;
+}
+
+.provider-offers h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #f9f9ff 0%, #f3f5ff 100%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.offer-card:hover {
+  border-color: #2575fc;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.1);
+}
+
+.offer-card.expanded {
+  border-color: #2575fc;
+  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, #f9f9ff 100%);
+}
+
+.offer-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 4px 12px;
+  align-items: center;
+}
+
+.offer-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.offer-description {
+  font-size: 12px;
+  color: #666;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.offer-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2575fc;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  text-align: right;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e8eaff;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offer-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.offer-btn.buy-self {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.offer-btn.buy-self:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+}
+
+.offer-btn.buy-others {
+  background: white;
+  color: #2575fc;
+  border: 2px solid #2575fc;
+}
+
+.offer-btn.buy-others:hover {
+  background: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+.offer-btn i {
+  font-size: 12px;
+}
+
+.offers-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.offers-error {
+  padding: 12px;
+  background: #fee;
+  color: #c33;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.provider-history {
+  margin-top: 12px;
+}
+
+.provider-history h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+/* Account Page Styles */
+.account-page {
+  animation: slideIn 0.3s ease;
+  position: relative;
+  z-index: 11000;
+  background: transparent;
+}
+
+.account-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.account-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #2575fc;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  font-size: 14px;
+  margin: 0;
+}
+
+.account-back-btn:hover {
+  background: rgba(37, 117, 252, 0.1);
+}
+
+.account-header-row h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.account-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.account-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-section h3 i {
+  color: #2575fc;
+}
+
+.account-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.account-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.account-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f0f2f5;
+}
+
+.account-profile-info {
+  flex: 1;
+}
+
+.account-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.account-email {
+  font-size: 14px;
+  color: #666;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* SIM Card Display Styles */
+.sim-card-display {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  position: relative;
+  min-height: 200px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(37, 117, 252, 0.3) !important;
+}
+
+.sim-card-display::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.sim-card-chip {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 40px;
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.chip-lines {
+  width: 35px;
+  height: 28px;
+  background: repeating-linear-gradient(
+      90deg,
+      #c5a572 0px,
+      #c5a572 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      #c5a572 0px,
+      #c5a572 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  border-radius: 3px;
+}
+
+.sim-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.sim-card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.sim-card-number {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-family: "Courier New", monospace;
+}
+
+.sim-card-balance-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sim-balance-label {
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.sim-balance-amount {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.sim-card-provider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sim-card-provider i {
+  font-size: 14px;
+}
+
+/* Legacy wallet styles (keep for backwards compatibility) */
+.wallet-card {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.wallet-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wallet-label {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.wallet-amount {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.account-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.account-btn.primary {
+  background: white;
+  color: #2575fc;
+}
+
+.account-btn.primary:hover {
+  background: #f7f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.account-btn.secondary {
+  background: #f0f2f5;
+  color: #333;
+}
+
+.account-btn.secondary:hover {
+  background: #e5e7eb;
+}
+
+.account-btn.danger {
+  background: #fee;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.account-btn.danger:hover {
+  background: #fecaca;
+  border-color: #dc2626;
+}
+
+.account-btn.full-width {
+  width: 100%;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+}
+
+.account-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.account-list-item:last-child {
+  border-bottom: none;
+}
+
+.account-list-item:hover {
+  background: #f9fafb;
+}
+
+.list-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.list-item-left i {
+  width: 20px;
+  text-align: center;
+  color: #2575fc;
+}
+
+.account-list-item > i {
+  color: #999;
+  font-size: 14px;
+}
+
+/* Make profile pic clickable */
+.profile-pic {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.2);
+}
+
+/* Make SIM card clickable */
+.sim-card-display {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sim-card-display:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(37, 117, 252, 0.4) !important;
+}
+
+/* Phone Update Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10001;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modal-body .input-group {
+  margin-bottom: 20px;
+}
+
+.modal-body .input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #2575fc;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+}
+
+.modal-input::placeholder {
+  color: #999;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #f9fafb;
+  border-top: 1px solid #e0e0e0;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-btn.primary {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+}
+
+.modal-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37, 117, 252, 0.4);
+}
+
+.modal-btn.secondary {
+  background: white;
+  color: #666;
+  border: 2px solid #e0e0e0;
+}
+
+.modal-btn.secondary:hover {
+  background: #f9fafb;
+  border-color: #ccc;
+}
