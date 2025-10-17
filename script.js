@@ -15,7 +15,7 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Paystack configuration
-const PAYSTACK_PUBLIC_KEY = "pk_live_c00c0b9c3267aab757f0644a027e4ad0e5079b41"; // Replace with your Paystack public key
+const PAYSTACK_PUBLIC_KEY = "pk_test_7d6bef2c11764ac43547031baf2c197607286987"; // Replace with your Paystack public key
 
 // Elements
 const loginFormContainer = document.getElementById("login-form");
@@ -441,6 +441,13 @@ function hideProviderDetail() {
 
 if (providerBackBtn) {
   providerBackBtn.addEventListener("click", hideProviderDetail);
+}
+
+// Transaction detail page helpers
+const transactionBackBtn = document.getElementById("transaction-back-btn");
+
+if (transactionBackBtn) {
+  transactionBackBtn.addEventListener("click", hideTransactionDetail);
 }
 
 // Account page helpers
@@ -1172,34 +1179,109 @@ async function refreshTransactionsList() {
   }
 }
 
-// Show order details in a toast or modal
+// Show order details in a dedicated page
 function showOrderDetails(order) {
+  const transactionDetailPage = document.getElementById(
+    "transaction-detail-page"
+  );
+  const contentArea = document.querySelector(".content-area");
+  const providerDetail = document.getElementById("provider-detail");
+  const accountPage = document.getElementById("account-page");
+
+  if (!transactionDetailPage) return;
+
+  // Format date
   const orderDate = new Date(order.created_at).toLocaleString("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
   });
 
-  const statusEmoji =
-    order.order_status === "completed"
-      ? "✅"
-      : order.order_status === "processing"
-      ? "⏳"
-      : "❌";
+  // Update status card
+  const statusIcon = document.getElementById("detail-status-icon");
+  const statusValue = document.getElementById("detail-status-value");
 
-  const details = `${statusEmoji} Order Details
+  if (statusIcon && statusValue) {
+    statusIcon.className = "status-icon";
+    if (order.order_status === "completed") {
+      statusIcon.classList.add("completed");
+      statusIcon.innerHTML = '<i class="fa fa-check-circle"></i>';
+      statusValue.textContent = "Completed";
+      statusValue.style.color = "#10b981";
+    } else if (order.order_status === "processing") {
+      statusIcon.classList.add("pending");
+      statusIcon.innerHTML = '<i class="fa fa-clock"></i>';
+      statusValue.textContent = "Processing";
+      statusValue.style.color = "#f59e0b";
+    } else {
+      statusIcon.classList.add("failed");
+      statusIcon.innerHTML = '<i class="fa fa-times-circle"></i>';
+      statusValue.textContent = "Failed";
+      statusValue.style.color = "#ef4444";
+    }
+  }
 
-Order ID: #${order.id.substring(0, 8)}
-Bundle: ${order.offer_name}
-Provider: ${order.offer_provider}
-Amount: GHS ${order.amount.toFixed(2)}
-Recipient: ${order.recipient_phone}
-${order.buy_for_self ? "Type: For yourself" : "Type: Gift"}
-Order Status: ${order.order_status.toUpperCase()}
-Payment Status: ${order.payment_status.toUpperCase()}
-Date: ${orderDate}
-Reference: ${order.payment_reference}`;
+  // Update order information
+  const detailOrderId = document.getElementById("detail-order-id");
+  const detailBundle = document.getElementById("detail-bundle");
+  const detailProvider = document.getElementById("detail-provider");
+  const detailAmount = document.getElementById("detail-amount");
 
-  showToast(details, { type: "success", timeout: 10000 });
+  if (detailOrderId) detailOrderId.textContent = `#${order.id.substring(0, 8)}`;
+  if (detailBundle) detailBundle.textContent = order.offer_name || "N/A";
+  if (detailProvider)
+    detailProvider.textContent = order.offer_provider || "N/A";
+  if (detailAmount)
+    detailAmount.textContent = `GHS ${order.amount?.toFixed(2) || "0.00"}`;
+
+  // Update recipient information
+  const detailRecipient = document.getElementById("detail-recipient");
+  const detailType = document.getElementById("detail-type");
+
+  if (detailRecipient)
+    detailRecipient.textContent = order.recipient_phone || "N/A";
+  if (detailType)
+    detailType.textContent = order.buy_for_self ? "For yourself" : "Gift";
+
+  // Update payment information
+  const detailPaymentStatus = document.getElementById("detail-payment-status");
+  const detailReference = document.getElementById("detail-reference");
+  const detailDate = document.getElementById("detail-date");
+
+  if (detailPaymentStatus) {
+    detailPaymentStatus.textContent =
+      order.payment_status?.toUpperCase() || "N/A";
+    detailPaymentStatus.style.color =
+      order.payment_status === "paid" ? "#10b981" : "#f59e0b";
+  }
+  if (detailReference)
+    detailReference.textContent = order.payment_reference || "N/A";
+  if (detailDate) detailDate.textContent = orderDate;
+
+  // Hide other pages and show transaction detail
+  if (contentArea) contentArea.style.display = "none";
+  if (providerDetail) providerDetail.style.display = "none";
+  if (accountPage) accountPage.style.display = "none";
+  transactionDetailPage.style.display = "block";
+
+  // Expand container width
+  const containerEl = document.querySelector(".container");
+  if (containerEl) containerEl.classList.add("wide");
+}
+
+// Hide transaction detail page
+function hideTransactionDetail() {
+  const transactionDetailPage = document.getElementById(
+    "transaction-detail-page"
+  );
+  const contentArea = document.querySelector(".content-area");
+
+  if (!transactionDetailPage || !contentArea) return;
+
+  transactionDetailPage.style.display = "none";
+  contentArea.style.display = "block";
+
+  const containerEl = document.querySelector(".container");
+  if (containerEl) containerEl.classList.remove("wide");
 }
 
 // Recipient Phone Modal for "Buy for Others"

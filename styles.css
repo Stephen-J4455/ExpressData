@@ -395,7 +395,7 @@ body {
 .profile-pic {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: 12px;
   object-fit: cover;
   border: 2px solid rgba(0, 0, 0, 0.06);
 }
@@ -633,7 +633,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 400px;
+  min-height: 260px;
+  height: fit-content;
   overflow-y: auto;
   padding-right: 8px;
 }
@@ -713,6 +714,11 @@ body {
 
 /* Mobile devices (portrait phones, less than 576px) */
 @media (max-width: 575px) {
+  /* Remove cursor pointer from all elements in mobile view */
+  * {
+    cursor: default !important;
+  }
+
   body {
     padding-top: 0;
   }
@@ -820,6 +826,11 @@ body {
 
 /* Small mobile devices (very small phones, less than 375px) */
 @media (max-width: 374px) {
+  /* Remove cursor pointer from all elements in mobile view */
+  * {
+    cursor: default !important;
+  }
+
   .wavy-header {
     padding: 16px 12px 24px;
   }
@@ -861,6 +872,11 @@ body {
 
 /* Mobile landscape and small tablets (576px to 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
+  /* Remove cursor pointer from all elements in mobile view */
+  * {
+    cursor: default !important;
+  }
+
   .container {
     max-width: 540px;
     padding: 0 16px;
@@ -949,6 +965,11 @@ body {
 
 /* Main UI responsive rules */
 @media (max-width: 480px) {
+  /* Remove cursor pointer from all elements in mobile view */
+  * {
+    cursor: default !important;
+  }
+
   .container {
     max-width: 100%;
     padding: 0;
@@ -1063,7 +1084,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-height: 260px;
+    min-height: 260px;
+    height: fit-content;
     overflow-y: auto;
     padding-right: 6px;
     font-size: 13px; /* small text */
@@ -1252,7 +1274,8 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    max-height: unset;
+    min-height: 260px;
+    height: fit-content;
   }
 
   .transaction-row {
@@ -1522,7 +1545,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 400px;
+  min-height: 260px;
+  height: fit-content;
   overflow-y: auto;
 }
 
@@ -2196,4 +2220,283 @@ body {
 .modal-btn.secondary:hover {
   background: #f9fafb;
   border-color: #ccc;
+}
+
+/* Transaction Detail Page Styles */
+.transaction-detail-page {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 6px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.transaction-detail-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0 12px;
+}
+
+.transaction-back-btn {
+  padding: 10px 16px;
+  border: none;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.2);
+}
+
+.transaction-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.3);
+}
+
+.transaction-detail-header-row h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.transaction-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 12px;
+}
+
+/* Status Card */
+.status-card {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(37, 117, 252, 0.25);
+}
+
+.status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.status-icon.completed {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.status-icon.pending {
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.status-icon.failed {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.status-text {
+  flex: 1;
+}
+
+.status-label {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.status-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Detail Sections */
+.detail-section {
+  margin-bottom: 8px;
+}
+
+.detail-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-section h3 i {
+  color: #6a11cb;
+}
+
+.detail-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #111;
+  font-weight: 600;
+  text-align: right;
+}
+
+.amount-highlight {
+  font-size: 18px;
+  color: #2575fc;
+}
+
+.reference-code {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 6px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Action Buttons */
+.detail-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding-bottom: 24px;
+}
+
+.detail-action-btn {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.detail-action-btn.support {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.2);
+}
+
+.detail-action-btn.support:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.3);
+}
+
+.detail-action-btn.download {
+  background: white;
+  color: #6a11cb;
+  border: 2px solid #6a11cb;
+}
+
+.detail-action-btn.download:hover {
+  background: #f8f9ff;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .transaction-detail-page {
+    padding: 0;
+  }
+
+  .transaction-detail-header-row {
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+
+  .transaction-detail-header-row h2 {
+    font-size: 20px;
+  }
+
+  .transaction-back-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .transaction-detail-content {
+    padding: 0 8px;
+    gap: 16px;
+  }
+
+  .status-card {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .status-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .status-value {
+    font-size: 20px;
+  }
+
+  .detail-card {
+    padding: 16px;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+  }
+
+  .detail-action-btn {
+    width: 100%;
+  }
 }

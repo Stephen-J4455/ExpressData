@@ -216,6 +216,98 @@
               </div>
             </div>
 
+            <!-- Transaction Detail Page (hidden by default) -->
+            <div id="transaction-detail-page" class="transaction-detail-page" style="display: none; margin-top: 24px">
+              <div class="transaction-detail-header-row">
+                <button id="transaction-back-btn" class="transaction-back-btn" aria-label="Go back">
+                  <i class="fa fa-arrow-left"></i> Back
+                </button>
+                <h2>Transaction Details</h2>
+              </div>
+              
+              <div class="transaction-detail-content">
+                <!-- Status Card -->
+                <div class="detail-section">
+                  <div class="status-card">
+                    <div class="status-icon" id="detail-status-icon">
+                      <i class="fa fa-check-circle"></i>
+                    </div>
+                    <div class="status-text">
+                      <div id="detail-status-label" class="status-label">Order Status</div>
+                      <div id="detail-status-value" class="status-value">Completed</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Information -->
+                <div class="detail-section">
+                  <h3><i class="fa fa-receipt"></i> Order Information</h3>
+                  <div class="detail-card">
+                    <div class="detail-row">
+                      <span class="detail-label">Order ID</span>
+                      <span id="detail-order-id" class="detail-value">#12345678</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Bundle</span>
+                      <span id="detail-bundle" class="detail-value">Data Bundle</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Provider</span>
+                      <span id="detail-provider" class="detail-value">MTN</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Amount</span>
+                      <span id="detail-amount" class="detail-value amount-highlight">GHS 0.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Recipient Information -->
+                <div class="detail-section">
+                  <h3><i class="fa fa-user"></i> Recipient Information</h3>
+                  <div class="detail-card">
+                    <div class="detail-row">
+                      <span class="detail-label">Phone Number</span>
+                      <span id="detail-recipient" class="detail-value">+233 XX XXX XXXX</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Type</span>
+                      <span id="detail-type" class="detail-value">For yourself</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="detail-section">
+                  <h3><i class="fa fa-credit-card"></i> Payment Information</h3>
+                  <div class="detail-card">
+                    <div class="detail-row">
+                      <span class="detail-label">Payment Status</span>
+                      <span id="detail-payment-status" class="detail-value">Paid</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Reference</span>
+                      <span id="detail-reference" class="detail-value reference-code">REF123456</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Date & Time</span>
+                      <span id="detail-date" class="detail-value">Jan 1, 2024, 12:00 PM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="detail-actions">
+                  <button class="detail-action-btn support">
+                    <i class="fa fa-headset"></i> Contact Support
+                  </button>
+                  <button class="detail-action-btn download" onclick="window.print()">
+                    <i class="fa fa-download"></i> Download Receipt
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <!-- Account Page (hidden by default) -->
             <div id="account-page" class="account-page" style="display: none; margin-top: 24px">
               <div class="account-header-row">
