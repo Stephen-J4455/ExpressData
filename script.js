@@ -15,7 +15,7 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Paystack configuration
-const PAYSTACK_PUBLIC_KEY = "pk_test_7d6bef2c11764ac43547031baf2c197607286987"; // Replace with your Paystack public key
+const PAYSTACK_PUBLIC_KEY = "pk_live_c00c0b9c3267aab757f0644a027e4ad0e5079b41"; // Replace with your Paystack public key
 
 // Elements
 const loginFormContainer = document.getElementById("login-form");

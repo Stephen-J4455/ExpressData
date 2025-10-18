@@ -14,7 +14,7 @@ body {
   align-items: flex-start; /* allow content to flow from top so page can scroll */
   min-height: 100vh;
   overflow-y: auto;
-  padding-top: 24px; /* small top spacing so content isn't glued to top */
+  padding-top: 24px; /* f0f2f5 small top spacing so content isn't glued to top */
 }
 
 /* Only hide scrollbars on specific elements, not globally */
@@ -726,6 +726,7 @@ body {
 
   .container {
     max-width: 100%;
+    min-height: 0;
     padding: 0;
     margin: 0;
   }
@@ -880,6 +881,7 @@ body {
 
   .container {
     max-width: 540px;
+    min-height: 0;
     padding: 0 16px;
   }
 
@@ -973,6 +975,7 @@ body {
 
   .container {
     max-width: 100%;
+    min-height: 0;
     padding: 0;
   }
 
